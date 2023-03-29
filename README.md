@@ -9,4 +9,4 @@ npx express-generator@4.16.1 nucampsiteServer <br /> <br />
 app.use(express.static(path.join(__dirname, 'public'))); <br /> <br />
  to serve various endpoints <br />
  const campsiteRouter = require('./routes/campsiteRouter'); <br />
- const campsiteRouter = require('./routes/campsiteRouter'); <br />
+ app.use('/campsites', campsiteRouter); <br />
