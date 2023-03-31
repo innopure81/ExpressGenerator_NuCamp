@@ -5,13 +5,13 @@ Install express-generator globally <br />
 **express nucampsiteServer** <br /> <br />
 Or, use this command instead <br />
 **npx express-generator@4.16.1 nucampsiteServer** <br /> <br />
- to serve the static HTML files in the public folder <br />
+ To serve the static HTML files in the public folder: <br />
 **app.use(express.static(path.join(__dirname, 'public')));** <br /> <br />
- to serve various REST API endpoints to communicate w/ server database <br />
+ To serve various REST API endpoints to communicate w/ server database: <br />
  const campsiteRouter = require('./routes/campsiteRouter'); <br />
  **app.use('/campsites', campsiteRouter);** <br /><br /><br />
 
-1. To set REST API server w/ Express generator inside **app.js**: <br /><br />
+1. To set up a REST API server w/ Express generator inside **app.js**: <br /><br />
 var app = express(); <br /> 
 app.use('/campsites', **campsiteRouter**); <br /><br />
 
