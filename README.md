@@ -32,7 +32,7 @@ const Schema = mongoose.Schema; <br />
 require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
 
-  **To add a subDocument to a document <br />
+  **To add a subDocument to a document: <br /><br />
   const commentSchema = new Schema({ ... }); <br />
   const campsiteSchema = new Schema({ ... comments: [commentSchema] <br />
   }, {   <br />
@@ -44,7 +44,7 @@ const Currency = mongoose.Types.Currency; <br /><br />
 *To integrate mongoose schema "Campsite" model into express REST API drivers <br />
 const Campsite = require('../models/campsite'); <br /> <br />
 
-  *To use the client request from route.params.campsiteId property: <br />
+  *To use the client request from route.params.campsiteId property: <br /><br />
   campsiteRouter.route('/:campsiteId') <br />
   .delete((req, res, next)=>{ <br />
       Campsite.findByIdAndDelete(req.params.campsiteId) <br />
