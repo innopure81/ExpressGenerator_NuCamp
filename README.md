@@ -1,5 +1,5 @@
 # ExpressGenerator_NuCamp
-Use the Express generator to scaffold out an Express application. <br />
+0. Use the Express generator to scaffold out an Express application. <br />
 Install express-generator globally <br />
 npm install -g express-generator@4.16.1 <br />
 express nucampsiteServer <br /> <br />
@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public'))); <br /> <br />
 
 1. To set REST API server w/ Express generator <br /><br />
 var app = express(); <br /> 
-app.use('/campsites', campsiteRouter); <br /><br />
+app.use('/campsites', **campsiteRouter**); <br /><br />
 
 2. To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema <br /><br />
 const mongoose = require('mongoose'); <br />
@@ -37,13 +37,15 @@ const Currency = mongoose.Types.Currency; <br /><br />
   }, {   <br />
       timestamps: true <br />
   });  <br />
-  module.exports =  Campsite; <br /> <br />
+  module.exports =  **Campsite**; <br /> <br />
 
 4. To use the Campsite schema model in campsiteRouter installed in app.js: <br /> <br />
-1> To integrate mongoose schema "Campsite" model into express REST API drivers <br />
+1> To integrate mongoose schema "Campsite" model into Express REST API drivers <br />
+const express = require('express');<br />
+const **campsiteRouter** = **express.Router()**;<br />
 const **Campsite** = require('../models/campsite'); <br /> <br />
 2> To use the client request from route.params.campsiteId property: <br /><br />
-  campsiteRouter.route('/:campsiteId') <br />
+ **campsiteRouter.route('/:campsiteId')**<br />
   .delete((req, res, next)=>{ <br />
       **Campsite**.findByIdAndDelete(req.params.campsiteId) <br />
       .then(respons=>{ <br />
