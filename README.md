@@ -52,4 +52,4 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
       }) <br />
       .catch(err=>next(err)); <br />
   }); <br /> <br />
-  module.exports = campsiteRouter; <br />
+  module.exports = **campsiteRouter**; <br />
