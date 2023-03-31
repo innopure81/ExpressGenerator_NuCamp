@@ -40,7 +40,7 @@ const Currency = mongoose.Types.Currency; <br /><br />
 1> To integrate mongoose schema "Campsite" model into Express REST API drivers: <br /><br />
 const express = require('express');<br />
 const **campsiteRouter** = **express.Router()**;<br />
-const **Campsite** = require('../models/campsite'); <br /> <br />
+const **Campsite** = require('**../models/campsite**'); <br /> <br />
 2> To use the client request from route.params.campsiteId property: <br /><br />
  **campsiteRouter.route('/:campsiteId')**<br />
   .delete((req, res, next)=>{ <br />
