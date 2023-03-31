@@ -28,7 +28,7 @@ const **connect** = **mongoose.connect(url,** {  <br />
 3. To create Campsite model with mongoose schema including currency Type inside **models/campsite.js**: <br /> <br />
 npm install mongoose@5.10.9 mongoose-currency@0.2.0 --legacy-peer-deps <br />
 const mongoose = require('mongoose'); <br />
-**const Schema = mongoose.Schema; **<br />
+**const Schema = mongoose.Schema;**<br />
 require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
   **To add a subDocument to a document: <br /><br />
@@ -37,7 +37,7 @@ const Currency = mongoose.Types.Currency; <br /><br />
   module.exports =  **Campsite**; <br /> <br />
 
 4. To use the Campsite schema model in **routes/campsiteRouter.js** installed in app.js: <br /> <br />
-1> To integrate mongoose schema "Campsite" model into Express REST API drivers <br />
+1> To integrate mongoose schema "Campsite" model into Express REST API drivers: <br /><br />
 const express = require('express');<br />
 const **campsiteRouter** = **express.Router()**;<br />
 const **Campsite** = require('../models/campsite'); <br /> <br />
