@@ -17,8 +17,8 @@ app.use('/campsites', campsiteRouter); <br /><br />
 
 2. To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema <br /><br />
 const mongoose = require('mongoose'); <br />
-const url = 'mongodb://localhost:27017/nucampsite'; <br />
-const connect = mongoose.connect(url, {  <br />
+**const url = 'mongodb://localhost:27017/nucampsite';** <br />
+const **connect** = **mongoose.connect(url,** {  <br />
   useCreateIndex: true,  <br />
   useFindAndModify: false,  <br />
   useNewUrlParser: true,  <br />
@@ -28,13 +28,12 @@ const connect = mongoose.connect(url, {  <br />
 3. To create Campsite model with mongoose schema including currency Type: <br /> <br />
 npm install mongoose@5.10.9 mongoose-currency@0.2.0 --legacy-peer-deps <br />
 const mongoose = require('mongoose'); <br />
-const Schema = mongoose.Schema; <br />
+**const Schema = mongoose.Schema; **<br />
 require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
-
   **To add a subDocument to a document: <br /><br />
   const commentSchema = new Schema({ ... }); <br />
-  const campsiteSchema = new Schema({ ... comments: [commentSchema] <br />
+  const campsiteSchema = new Schema({ ... **comments: [commentSchema]** <br />
   }, {   <br />
       timestamps: true <br />
   });  <br />
