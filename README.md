@@ -1,15 +1,15 @@
 # ExpressGenerator_NuCamp
 0. Use the Express generator to scaffold out an Express application. <br />
 Install express-generator globally <br />
-npm install -g express-generator@4.16.1 <br />
-express nucampsiteServer <br /> <br />
+**npm install -g express-generator@4.16.1** <br />
+**express nucampsiteServer** <br /> <br />
 Or, use this command instead <br />
-npx express-generator@4.16.1 nucampsiteServer <br /> <br />
+**npx express-generator@4.16.1 nucampsiteServer** <br /> <br />
  to serve the static HTML files in the public folder <br />
-app.use(express.static(path.join(__dirname, 'public'))); <br /> <br />
- to serve various endpoints <br />
+**app.use(express.static(path.join(__dirname, 'public')));** <br /> <br />
+ to serve various REST API endpoints to communicate w/ server database <br />
  const campsiteRouter = require('./routes/campsiteRouter'); <br />
- app.use('/campsites', campsiteRouter); <br /><br /><br />
+ **app.use('/campsites', campsiteRouter);** <br /><br /><br />
 
 1. To set REST API server w/ Express generator inside **app.js**: <br /><br />
 var app = express(); <br /> 
@@ -26,7 +26,7 @@ const **connect** = **mongoose.connect(url,** {  <br />
 });  <br />
 
 3. To create Campsite model with mongoose schema including currency Type inside **models/campsite.js**: <br /> <br />
-npm install mongoose@5.10.9 mongoose-currency@0.2.0 --legacy-peer-deps <br />
+**npm install mongoose@5.10.9 mongoose-currency@0.2.0 --legacy-peer-deps** <br />
 const mongoose = require('mongoose'); <br />
 **const Schema = mongoose.Schema;**<br />
 require('mongoose-currency').loadType(mongoose); <br />
