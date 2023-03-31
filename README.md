@@ -11,11 +11,11 @@ app.use(express.static(path.join(__dirname, 'public'))); <br /> <br />
  const campsiteRouter = require('./routes/campsiteRouter'); <br />
  app.use('/campsites', campsiteRouter); <br /><br /><br />
 
-1. To set REST API server w/ Express generator <br /><br />
+1. To set REST API server w/ Express generator inside **app.js**: <br /><br />
 var app = express(); <br /> 
 app.use('/campsites', **campsiteRouter**); <br /><br />
 
-2. To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema <br /><br />
+2. To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema inside **app.js**: <br /><br />
 const mongoose = require('mongoose'); <br />
 **const url = 'mongodb://localhost:27017/nucampsite';** <br />
 const **connect** = **mongoose.connect(url,** {  <br />
@@ -25,7 +25,7 @@ const **connect** = **mongoose.connect(url,** {  <br />
   useUnifiedTopology: true  <br />
 });  <br />
 
-3. To create Campsite model with mongoose schema including currency Type: <br /> <br />
+3. To create Campsite model with mongoose schema including currency Type inside **models/campsite.js**: <br /> <br />
 npm install mongoose@5.10.9 mongoose-currency@0.2.0 --legacy-peer-deps <br />
 const mongoose = require('mongoose'); <br />
 **const Schema = mongoose.Schema; **<br />
@@ -33,13 +33,10 @@ require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
   **To add a subDocument to a document: <br /><br />
   const commentSchema = new Schema({ ... }); <br />
-  const campsiteSchema = new Schema({ ... **comments: [commentSchema]** <br />
-  }, {   <br />
-      timestamps: true <br />
-  });  <br />
+  const campsiteSchema = new Schema({ ... **comments: [commentSchema]** }, {timestamps: true});  <br />
   module.exports =  **Campsite**; <br /> <br />
 
-4. To use the Campsite schema model in campsiteRouter installed in app.js: <br /> <br />
+4. To use the Campsite schema model in **routes/campsiteRouter.js** installed in app.js: <br /> <br />
 1> To integrate mongoose schema "Campsite" model into Express REST API drivers <br />
 const express = require('express');<br />
 const **campsiteRouter** = **express.Router()**;<br />
@@ -55,5 +52,4 @@ const **Campsite** = require('../models/campsite'); <br /> <br />
       }) <br />
       .catch(err=>next(err)); <br />
   }); <br /> <br />
-  
   module.exports = campsiteRouter; <br />
