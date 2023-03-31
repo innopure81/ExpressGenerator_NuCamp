@@ -43,7 +43,6 @@ const Currency = mongoose.Types.Currency; <br /><br />
 4. To use the Campsite schema model in campsiteRouter installed in app.js: <br /> <br />
 1> To integrate mongoose schema "Campsite" model into express REST API drivers <br />
 const **Campsite** = require('../models/campsite'); <br /> <br />
-
 2> To use the client request from route.params.campsiteId property: <br /><br />
   campsiteRouter.route('/:campsiteId') <br />
   .delete((req, res, next)=>{ <br />
