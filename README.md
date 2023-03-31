@@ -33,7 +33,7 @@ require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
   **To add a subDocument to a document: <br /><br />
   const **commentSchema** = new **Schema**({ ... }); <br />
-  const campsiteSchema = new **Schema**({ ... **comments: [commentSchema]** }, {timestamps: true});  <br />
+  const **campsiteSchema** = new **Schema**({ ... **comments: [commentSchema]** }, {timestamps: true});  <br /><br />
   module.exports =  **Campsite**; <br /> <br />
 
 4. To use the Campsite schema model in **routes/campsiteRouter.js** installed in app.js: <br /> <br />
