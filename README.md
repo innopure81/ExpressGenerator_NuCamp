@@ -17,7 +17,7 @@ app.use('/campsites', campsiteRouter); <br /><br />
 
 2. To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema <br /><br />
 const mongoose = require('mongoose'); <br />
-# const url = 'mongodb://localhost:27017/nucampsite'; <br />
+const url = 'mongodb://localhost:27017/nucampsite'; <br />
 const connect = mongoose.connect(url, {  <br />
   useCreateIndex: true,  <br />
   useFindAndModify: false,  <br />
@@ -32,7 +32,7 @@ const Schema = mongoose.Schema; <br />
 require('mongoose-currency').loadType(mongoose); <br />
 const Currency = mongoose.Types.Currency; <br /><br />
 
-//To add a subDocument to a document <br />
+**To add a subDocument to a document <br />
 const commentSchema = new Schema({ ... }); <br />
 const campsiteSchema = new Schema({ ... comments: [commentSchema] <br />
 }, {   <br />
@@ -41,10 +41,10 @@ const campsiteSchema = new Schema({ ... comments: [commentSchema] <br />
 module.exports =  Campsite; <br /> <br />
 
 4. To use the Campsite schema model in campsiteRouter installed in app.js: <br /> <br />
-//To integrate mongoose schema "Campsite" model into express REST API drivers <br />
+*To integrate mongoose schema "Campsite" model into express REST API drivers <br />
 const Campsite = require('../models/campsite'); <br /> <br />
 
-//To use the client request from route.params.campsiteId property: <br />
+*To use the client request from route.params.campsiteId property: <br />
 campsiteRouter.route('/:campsiteId') <br />
 .delete((req, res, next)=>{ <br />
     Campsite.findByIdAndDelete(req.params.campsiteId) <br />
