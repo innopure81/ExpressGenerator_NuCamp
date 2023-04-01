@@ -57,17 +57,17 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
   5. To manipulate comments on campsites/:campsiteId/comments: <br /><br />
   campsiteRouter.route('/:campsiteId/comments')  <br />
   .delete((req, res, next)=>{ <br />
-    Campsite.findById(req.params.campsiteId) <br />
+    **Campsite.findById(req.params.campsiteId)** <br />
     .then(campsite=>{ <br />
-        if(campsite){ <br />
-            for (let i=(campsite.comments.length-1); i>=0; i--){ <br />
-                campsite.comments.id(campsite.comments[i]._id).remove(); <br />
-            } <br />
-            campsite.save() <br />
-            .then(campsite=>{ <br />
+        `if(campsite)`{ <br />
+            `for (let i=(campsite.comments.length-1); i>=0; i--){` <br />
+                `campsite.comments.id(campsite.comments[i]._id).remove();` <br />
+            `}` <br />
+            `campsite.save()` <br />
+            .then(**campsite**=>{ <br />
                 res.statusCode = 200; <br />
                 res.setHeader('Content-Type', 'application/json'); <br />
-                res.json(campsite); <br />
+                res.json(**campsite**); <br />
             }) <br />
             .catch(err=>next(err)); <br />
         }else{ <br />
