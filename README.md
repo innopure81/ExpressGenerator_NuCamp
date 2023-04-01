@@ -1,6 +1,8 @@
 # ExpressGenerator_NuCamp
 
 ### `How to interact w/ MongoDB thru queries via mongoose schema model` <br /><br />
+https://mongoosejs.com/docs/queries.html<br />
+
 0. Use the Express generator to scaffold out an Express application. <br />
 Install express-generator globally <br />
 **npm install -g express-generator@4.16.1** <br />
