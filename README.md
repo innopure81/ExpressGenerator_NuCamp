@@ -71,7 +71,7 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
             }) <br />
             .catch(err=>next(err)); <br />
         }else{ <br />
-            err = new Error(``Campsite ${req.params.campsiteId} not found``); <br />
+            err = new Error(`'Campsite ${req.params.campsiteId} not found'`); <br />
             err.status = 404; <br />
             return next(err); <br />
         } <br />
