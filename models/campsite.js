@@ -36,7 +36,7 @@ const campsiteSchema = new Schema({
     },
     image:{
         type: String,
-        requried: true
+        required: true
     },
     elevation:{
         type: Number,

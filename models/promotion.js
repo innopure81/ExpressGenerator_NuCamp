@@ -16,7 +16,7 @@ const promotionSchema = new Schema({
     },
     image:{
         type: String,
-        requried: true
+        required: true
     },
     cost:{
         type: Currency,
@@ -34,3 +34,4 @@ const promotionSchema = new Schema({
 const Promotion = mongoose.model('Promotion', promotionSchema);
 
 module.exports =  Promotion;
+//module.exports = mongoose.model('Promotion', promotionSchema);

@@ -14,7 +14,7 @@ const partnerSchema = new Schema({
     },
     image:{
         type: String,
-        requried: true
+        required: true
     },
     featured:{
         type: Boolean,
@@ -25,5 +25,6 @@ const partnerSchema = new Schema({
 });
 
 const Partner = mongoose.model('Partner', partnerSchema);
-
 module.exports =  Partner;
+
+//module.exports = mongoose.model('Partner', partnerSchema);
