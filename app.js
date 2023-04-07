@@ -5,6 +5,8 @@ var path = require('path');
 var logger = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session); //The first class fuction will take in the (session) parameter.
+const passport = require('passport');
+const authenticate = require('./authenticate');
 
 const indexRouter = require('./routes/indexRouter');
 const usersRouter = require('./routes/usersRouter');
@@ -44,45 +46,21 @@ app.use(session({
   store: new FileStore()
 }));
 
+app.use(passport.initialize()); //To check incoming reqs from session-based authentication
+app.use(passport.session()); //To check if there's existing session for the client
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 function auth(req, res, next){
-  console.log(req.session);
+  console.log(req.user);//The session data is loaded into the request as 'req.user'
   
-  if(!req.session.user){
+  if(!req.user){
     const err = new Error('You are not authenticated!');
     err.status = 401;
-    return next(err);
-    /*
-    const authHeader = req.headers.authorization;
-    if(!authHeader){
-      const err = new Error('You are not authenticated!');
-      res.setHeader('WWW-Authenticate', 'Basic');
-      err.status = 401;
-      return next(err);
-    }
-    const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
-    const user = auth[0];
-    const pass = auth[1];
-    if (user === 'admin' && pass === 'password'){
-      res.session.user = 'admin'; //res.cookie('user', 'admin', {signed:true})
-      return next(); //authorized
-    }else {
-      const err =  new Error('You are not authenticated!');
-      res.setHeader('WWW-Authenticate', 'Basic');
-      err.status = 401;
-      return next(err);
-    }*/
+    return next(err);    
   }else{ 
-    
-    if(req.session.user === 'authenticated'){
-      return next();
-    }else{
-      const err = new Error('You are not authenticated!');
-      err.status = 401;
       return next(err);
-    }
   }
 }
 
