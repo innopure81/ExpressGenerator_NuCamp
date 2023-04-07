@@ -6,6 +6,8 @@ var logger = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session); //The first class fuction will take in the (session) parameter.
 
+const indexRouter = require('./routes/indexRouter');
+const usersRouter = require('./routes/usersRouter');
 const campsiteRouter = require('./routes/campsiteRouter');
 const partnerRouter = require('./routes/partnerRouter');
 const promotionRouter = require('./routes/promotionRouter');
@@ -42,10 +44,17 @@ app.use(session({
   store: new FileStore()
 }));
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 function auth(req, res, next){
   console.log(req.session);
-
+  
   if(!req.session.user){
+    const err = new Error('You are not authenticated!');
+    err.status = 401;
+    return next(err);
+    /*
     const authHeader = req.headers.authorization;
     if(!authHeader){
       const err = new Error('You are not authenticated!');
@@ -64,9 +73,10 @@ function auth(req, res, next){
       res.setHeader('WWW-Authenticate', 'Basic');
       err.status = 401;
       return next(err);
-    }
-  }else{
-    if(req.session.user === 'admin'){
+    }*/
+  }else{ 
+    
+    if(req.session.user === 'authenticated'){
       return next();
     }else{
       const err = new Error('You are not authenticated!');
