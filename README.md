@@ -82,3 +82,8 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
     }) <br />
     .catch(err=>next(err)); <br />
 }); <br /> <br />
+6. Hot to use mongo repl <br /> <br />
+mongo <br /> <br /> 
+use nucampsite <br /> <br />
+db.users.find().pretty() <br /> <br />
+
