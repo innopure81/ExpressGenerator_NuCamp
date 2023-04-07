@@ -3,10 +3,11 @@ var express = require('express');
 var path = require('path');
 //var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require('express-session');
-const FileStore = require('session-file-store')(session); //The first class fuction will take in the (session) parameter.
+//const session = require('express-session');
+//const FileStore = require('session-file-store')(session); //The first class fuction will take in the (session) parameter.
 const passport = require('passport');
-const authenticate = require('./authenticate');
+//const authenticate = require('./authenticate');
+const config = require('./config');
 
 const indexRouter = require('./routes/indexRouter');
 const usersRouter = require('./routes/usersRouter');
@@ -18,7 +19,7 @@ const promotionRouter = require('./routes/promotionRouter');
 var app = express(); 
 //To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/nucampsite';
+const url = config.mongoUrl;
 const connect = mongoose.connect(url, {
   useCreateIndex: true,
   useFindAndModify: false,
@@ -38,21 +39,21 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser('12345-67890-09876-54321'));
-app.use(session({
+/*app.use(session({
   name: 'session-id',
   secret: '12345-67890-09876-54321',
   saveUninitialized: false, //To prevent empty sessions and cookies from being set up
   resave: false, //To keep the session marked as active thru multiple requests
   store: new FileStore()
-}));
+})); */
 
 app.use(passport.initialize()); //To check incoming reqs from session-based authentication
-app.use(passport.session()); //To check if there's existing session for the client
+//app.use(passport.session()); //To check if there's existing session for the client
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-function auth(req, res, next){
+/*function auth(req, res, next){
   console.log(req.user);//The session data is loaded into the request as 'req.user'
   
   if(!req.user){
@@ -64,7 +65,7 @@ function auth(req, res, next){
   }
 }
 
-app.use(auth);
+app.use(auth); */
 
 app.use(express.static(path.join(__dirname, 'public')));
 
