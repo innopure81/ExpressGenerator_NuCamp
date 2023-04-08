@@ -17,8 +17,8 @@ const commentSchema = new Schema({
         required: true
     },
     author: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,//At the HTTP endpoint of('/:campsiteId/comments'), (req.body.author = req.user._id), to reference the User ObjectId created in mongoose Schema type
+        ref: 'User'//To cross-reference 'user' doc under User model in mongoDB database
     }
 }, {
     timestamps: true
