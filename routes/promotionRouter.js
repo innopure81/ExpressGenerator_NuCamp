@@ -10,7 +10,7 @@ promotionRouter.route('/')
     .then(promotions => res.status(200).json(promotions))
     .catch(err => next(err));
 })
-.post(authenticate.verifyUser, (req, res, next)=>{
+.post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.create(req.body)
     .then(promotion=> res.status(201).json(promotion))//201 HTTP code: Created success status response code
     .catch(err=>next(err));
@@ -19,7 +19,7 @@ promotionRouter.route('/')
     res.statusCode = 403;
     res.end('PUT operation not supported on /promotions');
 })
-.delete(authenticate.verifyUser, (req, res, next)=>{
+.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.deleteMany()
     .then(response=> res.status(200).json(response))
     .catch(err=>next(err));
@@ -35,12 +35,12 @@ promotionRouter.route('/:promotionId')
     res.statusCode = 403;
     res.end(`POST operation not supported on /promotions/${req.params.promotionId}`)
 })
-.put(authenticate.verifyUser, (req, res, next)=>{
+.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.findByIdAndUpdate(req.params.promotionId, req.body, {new: true})//{$set:{name: "Ha"}}:for a query to update a specific field,{new: true}:To send the client a new document back
     .then(promotion => res.status(200).json(promotion))
     .catch(err=>next(err));
 })
-.delete(authenticate.verifyUser, (req, res, next)=>{
+.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.findByIdAndDelete(req.params.promotionId)
     .then(response=> res.status(200).json(response))
     .catch(err=>next(err));

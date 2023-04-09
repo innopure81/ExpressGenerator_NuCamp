@@ -19,12 +19,13 @@ const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;
 
+//The jwtPassport function uses the JwtStrategy constructor to create a new strategy for authenticating users.
 exports.jwtPassport = passport.use(
     new JwtStrategy(
         opts,
         (jwt_payload, done) => {
-            console.log('JWT payload:', jwt_payload);
-            User.findOne({_id: jwt_payload._id}, (err, user) => {
+            console.log('JWT payload:', jwt_payload);//The jwt_payload argument is an object containing the decoded JWT payload.
+            User.findOne({_id: jwt_payload._id}, (err, user) => { //To call User.findOne() to search for a user with an _id property that matches the _id property in the JWT payload.
                 if (err) {
                     return done(err, false);
                 } else if (user) {
@@ -38,3 +39,50 @@ exports.jwtPassport = passport.use(
 );
 
 exports.verifyUser = passport.authenticate('jwt', {session: false});
+
+exports.verifyAdmin = (req, res, next)=>{
+    if(req.user.admin){
+        return next();
+    }else{
+        const err = new Error("You are not authorized to perform this operation!");
+        err.status = 403; //Unauthorized
+        return next(err);
+    }
+};
+
+/* 
+//Express passport-jwt authenticate.verifyAdmin: if(req.user.admin) .verifyUser: if(user)
+//if((campsite.comments.id(req.params.commentId).author._id).equals(req.user._id))
+
+//uers 
+req = {
+    user: {
+        _id: 282828,
+        firstname: "Ha",
+        ...
+        admin: true
+    }
+}
+//mongoose population: .populate('campsites.comments.author')
+//campsite.comments.id(campsite.comments[i]._id).remove();
+
+campsite = {
+    comments:[
+        {
+            _id: 2828282
+            ...
+            author: {
+                _id: 282828
+            } 
+        },
+        {
+            _id: 1228282
+            ...
+            author: {
+                _id: 282828
+            } 
+        }
+
+    ]
+}
+*/
