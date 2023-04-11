@@ -91,4 +91,14 @@ db.users.update({"username":"admin"}, {$set:{"admin":true}}); <br /> <br />
 
 7. `Passport-Local-Mongoose plug-in's 'local' authenticaton strategy & lightweight JSON Web Tokens (JWTs) :`<br /> <br />
 npm install passport@0.4.1 passport-local@1.0.0 passport-local-mongoose@6.0.1<br /> <br />
-npm install passport-jwt@4.0.0 jsonwebtoken@8.5.1<br /> <br />
+npm install passport-jwt@4.0.0 jsonwebtoken@8.5.1 <br /> <br />
+
+8. Configure secure HTTPS server into Express server: <br /> <br />
+openssl version => OpenSSL 1.1.1q  5 Jul 2022 <br />
+cd bin <br />
+ls <br />
+www* <br />
+openssl req -nodes -new -x509 -keyout server.key -out server.cert (Common name: localhost, email) <br />
+ls <br />
+server.cert  server.key  www* <br />
+Add `bin/server.key`(private key) and `bin/server.cert`(public key) to .gitignore file <br /> <br />
