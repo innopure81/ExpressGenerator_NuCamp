@@ -15,8 +15,6 @@ const campsiteRouter = require('./routes/campsiteRouter');
 const partnerRouter = require('./routes/partnerRouter');
 const promotionRouter = require('./routes/promotionRouter');
 
-//To set REST API server w/ Express generator
-var app = express(); 
 //To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema
 const mongoose = require('mongoose');
 const url = config.mongoUrl;
@@ -31,6 +29,16 @@ connect.then(()=>console.log('Connected correctly to server'),
 err=>console.log(err)
 );
 
+//To set REST API server w/ Express generator
+var app = express(); 
+app.all('*', (req, res, next)=>{ //'*': To catch every request to any paths on server
+    if(req.secure){
+      return next();
+    }else{
+      console.log(`Redirecting to: https://${req.hostname}:${app.get('secPort')}${req.url}`);
+      res.redirect(301, `https://${req.hostname}:${app.get('secPort')}${req.url}`);//HTTP 301: Moved Permanently
+    }
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
