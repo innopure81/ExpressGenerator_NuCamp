@@ -98,10 +98,11 @@ openssl version => OpenSSL 1.1.1q  5 Jul 2022 <br />
 cd bin <br />
 ls <br />
 www* <br />
-openssl req -nodes -new -x509 -keyout server.key -out server.cert (Common name: localhost, email) <br />
+`openssl req -nodes -new -x509 -keyout server.key -out server.cert` (Common name: localhost, email) <br />
 ls <br />
 server.cert  server.key  www* <br />
-Add `bin/server.key`(private key) and `bin/server.cert`(public key) to .gitignore file <br /> <br />
+Add `bin/server.key`(private key) and `bin/server.cert`(public key) to .gitignore file <br />
+The command `openssl req -nodes -new -x509 -keyout server.key -out server.cert` is used to create a self-signed certificate in `server.cert` including a password-less RSA private key in `server.key`. The `-nodes` option is short for “no DES” and it means that the private key will not be encrypted with a passphrase <br /> <br />
 
 9. Take steps to conceal your App Secret: <br />
 - add config.js to your .gitignore file before you add and commit updates <br />
