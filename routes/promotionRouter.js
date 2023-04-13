@@ -3,44 +3,47 @@ const promotionRouter = express.Router();
 //To implement Mongoose promotion model created in promotionSchema into Express REST API drivers
 const Promotion = require('../models/promotion.js');
 const authenticate = require('../authenticate');
+const cors = require('./cors.js');
 
 promotionRouter.route('/')
-.get((req, res, next) => {
+.options(cors.corsWithOptions, (req, res)=> res.sendStatus(200))
+.get(cors.cors, (req, res, next) => {
     Promotion.find()
     .then(promotions => res.status(200).json(promotions))
     .catch(err => next(err));
 })
-.post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
+.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.create(req.body)
     .then(promotion=> res.status(201).json(promotion))//201 HTTP code: Created success status response code
     .catch(err=>next(err));
 })
-.put(authenticate.verifyUser, (req, res)=>{
+.put(cors.corsWithOptions, authenticate.verifyUser, (req, res)=>{
     res.statusCode = 403;
     res.end('PUT operation not supported on /promotions');
 })
-.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
+.delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.deleteMany()
     .then(response=> res.status(200).json(response))
     .catch(err=>next(err));
 });
 //To use the client request from route.params.promotionId property:
 promotionRouter.route('/:promotionId')
-.get((req, res, next)=>{
+.options(cors.corsWithOptions, (req, res)=> res.sendStatus(200))
+.get(cors.cors, (req, res, next)=>{
     Promotion.findById(req.params.promotionId)
     .then(promotion => res.status(200).json(promotion))
     .catch(err=>next(err));
 })
-.post(authenticate.verifyUser, (req, res)=>{
+.post(cors.corsWithOptions, authenticate.verifyUser, (req, res)=>{
     res.statusCode = 403;
     res.end(`POST operation not supported on /promotions/${req.params.promotionId}`)
 })
-.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
+.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.findByIdAndUpdate(req.params.promotionId, req.body, {new: true})//{$set:{name: "Ha"}}:for a query to update a specific field,{new: true}:To send the client a new document back
     .then(promotion => res.status(200).json(promotion))
     .catch(err=>next(err));
 })
-.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
+.delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next)=>{
     Promotion.findByIdAndDelete(req.params.promotionId)
     .then(response=> res.status(200).json(response))
     .catch(err=>next(err));
