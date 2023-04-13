@@ -102,3 +102,8 @@ openssl req -nodes -new -x509 -keyout server.key -out server.cert (Common name: 
 ls <br />
 server.cert  server.key  www* <br />
 Add `bin/server.key`(private key) and `bin/server.cert`(public key) to .gitignore file <br /> <br />
+
+9. Take steps to conceal your App Secret: <br />
+- add config.js to your .gitignore file before you add and commit updates <br />
+- remove config.js from your existing git repository with this command:  <br />
+`git rm --cached config.js` <br />
