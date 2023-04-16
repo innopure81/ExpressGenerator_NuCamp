@@ -87,7 +87,7 @@ mongo <br />
 use nucampsite (*url = 'mongodb://localhost:27017/nucampsite';) <br /> 
 db.users.find().pretty(); <br /> 
 db.users.drop(); <br />
-**db.users.update({"username":"admin"}, {$set:{"admin":true}}); <br /> <br />
+**db.users.update({"username":"admin"}, {$set:{"admin":true}});** <br /> <br />
 
 7. `Passport-Local-Mongoose plug-in's 'local' authenticaton strategy & lightweight JSON Web Tokens (JWTs) :`<br /> <br />
 npm install passport@0.4.1 passport-local@1.0.0 passport-local-mongoose@6.0.1<br /> <br />
