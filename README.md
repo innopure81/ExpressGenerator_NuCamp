@@ -82,9 +82,9 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
     }) <br />
     .catch(err=>next(err)); <br />
 }); <br /> <br />
-6. How to communictate w/ db via mongo REPL: <br /> <br />
+6. How to communictate w/ db via mongo REPL:  <br /> <br />
 mongo <br /> <br /> 
-use nucampsite <br /> <br />
+use nucampsite (*url = 'mongodb://localhost:27017/nucampsite';) <br /> <br />
 db.users.find().pretty(); <br /> <br />
 db.users.drop(); <br /> <br />
 db.users.update({"username":"admin"}, {$set:{"admin":true}}); <br /> <br />
@@ -95,16 +95,26 @@ npm install passport-jwt@4.0.0 jsonwebtoken@8.5.1 <br /> <br />
 
 8. Configure secure HTTPS server into Express server: <br /> <br />
 openssl version => OpenSSL 1.1.1q  5 Jul 2022 <br />
-cd bin <br />
-ls <br />
+$ cd bin <br />
+$ which openssl <br />
+/mingw64/bin/openssl <br />
+$ ls <br />
 www* <br />
-`openssl req -nodes -new -x509 -keyout server.key -out server.cert` (Common name: localhost, email) <br />
-ls <br />
+`$ openssl req -nodes -new -x509 -keyout server.key -out server.cert` (Common name: localhost, email) <br />
+$ ls <br />
 server.cert  server.key  www* <br />
 Add `bin/server.key`(private key) and `bin/server.cert`(public key) to .gitignore file <br /><br />
-**The command `openssl req -nodes -new -x509 -keyout server.key -out server.cert` is used to create a self-signed certificate in `server.cert` including a password-less RSA private key in `server.key`. The `-nodes` option is short for “no DES” and it means that the private key will not be encrypted with a passphrase. <br /> <br />
+**The command `openssl req -nodes -new -x509 -keyout server.key -out server.cert` is used to create a self-signed certificate in `server.cert` including a password-less RSA private key in `server.key`. The `-nodes` option is short for “no DES” and it means that the private key will not be encrypted with a passphrase. <br />
+Common name[]:localhost <br />
+Email Address []:[your email address]<br /> <br />
 
 9. Take steps to conceal your App Secret: <br />
 - add config.js to your .gitignore file before you add and commit updates <br />
 - remove config.js from your existing git repository with this command:  <br />
 `git rm --cached config.js` <br />
+
+10. Check if the user has an associated favorite document using `Favorite.findOne({user: req.user._id }).then(favorite=>{if(favorite){ ... ` <br /> 
+ -If the favorite document exists: <br />
+ `req.body.forEach(fav => {if(!favorite.campsites.includes(fav._id)){favorite.campsites.push(fav._id);}})` <br /> <br />
+ -If there is no favorite document for the user, create a favorite document for the user and add the campsite IDs from the request body to the "campsites" array for the document: <br />
+ `Favorite.create({user:req.user._id, campsites:[req.params.campsiteId]})` <br /> <br />
