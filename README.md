@@ -109,7 +109,7 @@ Common name[]:localhost <br />
 Email Address []:[your email address]<br /> <br />
 
 9. Take steps to conceal your App Secret: <br />
-- add config.js to your .gitignore file before you add and commit updates <br />
+- add `config.js` to your `.gitignore` file before you add and commit updates. <br />
 - remove config.js from your existing git repository with this command:  <br />
 `git rm --cached config.js` <br /><br />
 
