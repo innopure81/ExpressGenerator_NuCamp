@@ -113,7 +113,7 @@ Email Address []:[your email address]<br /> <br />
 - remove config.js from your existing git repository with this command:  <br />
 `git rm --cached config.js` <br /><br />
 
-10. Check if the user has an associated favorite document using **Favorite.findOne({user: req.user._id }).then(favorite=>{if(favorite){ ... ** <br /> 
+10. Check if the user has an associated favorite document using **Favorite.findOne({user: req.user._id }).then(favorite=>{if(favorite){ ... :** <br /> 
  -If the favorite document exists: <br />
  `req.body.forEach(fav => {if(!favorite.campsites.includes(fav._id)){favorite.campsites.push(fav._id);}})` <br /> <br />
  -If there is no favorite document for the user, create a favorite document for the user and add the campsite IDs from the request body to the "campsites" array for the document: <br />
