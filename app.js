@@ -15,6 +15,7 @@ const campsiteRouter = require('./routes/campsiteRouter');
 const partnerRouter = require('./routes/partnerRouter');
 const promotionRouter = require('./routes/promotionRouter');
 const uploadRouter = require('./routes/uploadRouter');
+const favoriteRouter = require('./routes/favoriteRouter');
 
 //To set up a connection between Express server and MongoDB database wrapped w/ mongoose schema
 const mongoose = require('mongoose');
@@ -82,6 +83,7 @@ app.use('/campsites', campsiteRouter);
 app.use('/partners', partnerRouter);
 app.use('/promotions', promotionRouter);
 app.use('/imageupload', uploadRouter);
+app.use('/favorites', favoriteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
