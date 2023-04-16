@@ -89,8 +89,8 @@ db.users.find().pretty(); <br />
 db.users.drop(); <br />
 **db.users.update({"username":"admin"}, {$set:{"admin":true}});** <br /> <br />
 
-7. `Passport-Local-Mongoose plug-in's 'local' authenticaton strategy & lightweight JSON Web Tokens (JWTs) :`<br /> <br />
-npm install passport@0.4.1 passport-local@1.0.0 passport-local-mongoose@6.0.1<br /> <br />
+7. **Passport-Local-Mongoose plug-in's 'local' authenticaton strategy & lightweight JSON Web Tokens (JWTs) :**<br /> <br />
+npm install passport@0.4.1 passport-local@1.0.0 passport-local-mongoose@6.0.1 <br />
 npm install passport-jwt@4.0.0 jsonwebtoken@8.5.1 <br /> <br />
 
 8. Configure secure HTTPS server into Express server: <br /> <br />
