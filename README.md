@@ -82,12 +82,12 @@ const **Campsite** = require('**../models/campsite**'); <br /> <br />
     }) <br />
     .catch(err=>next(err)); <br />
 }); <br /> <br />
-6. How to communictate w/ db via mongo REPL:  <br /> <br />
-mongo <br /> <br /> 
-use nucampsite (*url = 'mongodb://localhost:27017/nucampsite';) <br /> <br />
-db.users.find().pretty(); <br /> <br />
-db.users.drop(); <br /> <br />
-db.users.update({"username":"admin"}, {$set:{"admin":true}}); <br /> <br />
+6. How to communictate w/ db via mongo REPL shell:  <br /> <br />
+mongo <br /> 
+use nucampsite (*url = 'mongodb://localhost:27017/nucampsite';) <br /> 
+db.users.find().pretty(); <br /> 
+db.users.drop(); <br />
+**db.users.update({"username":"admin"}, {$set:{"admin":true}}); <br /> <br />
 
 7. `Passport-Local-Mongoose plug-in's 'local' authenticaton strategy & lightweight JSON Web Tokens (JWTs) :`<br /> <br />
 npm install passport@0.4.1 passport-local@1.0.0 passport-local-mongoose@6.0.1<br /> <br />
@@ -111,7 +111,7 @@ Email Address []:[your email address]<br /> <br />
 9. Take steps to conceal your App Secret: <br />
 - add config.js to your .gitignore file before you add and commit updates <br />
 - remove config.js from your existing git repository with this command:  <br />
-`git rm --cached config.js` <br />
+`git rm --cached config.js` <br /><br />
 
 10. Check if the user has an associated favorite document using `Favorite.findOne({user: req.user._id }).then(favorite=>{if(favorite){ ... ` <br /> 
  -If the favorite document exists: <br />
